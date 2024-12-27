@@ -90,5 +90,7 @@ The script is optimized for typical datasets but may require adjustments for ver
 
 # Author & License
 This script was written in R for transcriptomic data analysis and genomic feature annotation.
+
 Author: Irem Ozkan
+
 Date: December 27, 2024
