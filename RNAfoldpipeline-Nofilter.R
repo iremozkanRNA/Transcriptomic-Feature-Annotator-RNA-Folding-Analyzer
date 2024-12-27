@@ -2,10 +2,7 @@
 ############################################################
 print("Loading the libraries")
 ############################################################
-library(Biostrings)
-library(tidyverse)
-library(stringr)
-library(dplyr)
+lapply(c("Biostrings", "tidyverse", "stringr", "dplyr"), library, character.only=T)
 ############################################################
 print("Reading the input files")
 ############################################################
