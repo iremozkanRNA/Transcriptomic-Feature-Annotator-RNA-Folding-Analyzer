@@ -38,9 +38,9 @@ Gene Annotation File: Tab-delimited file with gene information (e.g., `genome.ge
 Open the script in RStudio or your preferred R environment.
 Ensure all required packages are installed using the following commands:
 > if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("Biostrings")
-> install.packages("tidyverse")>
+	install.packages("BiocManager")
+> BiocManager::install("Biostrings")
+> install.packages("tidyverse")
 > install.packages("stringr")
 > install.packages("dplyr")
 
