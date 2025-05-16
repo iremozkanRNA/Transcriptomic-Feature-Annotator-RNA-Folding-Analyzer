@@ -75,30 +75,16 @@ for(i in 1:nrow(RNAfold)){
 ############################################################
 print("Calculating the U-track rich regions")
 ############################################################
-for(x in 1:nrow(RNAfold)){
-  breakCond <- 0
-  
-  while(breakCond == 0){
-    
-    for(y in 1:(nchar(RNAfold$FoldingPattern[x])-6)){
-      
-      if(substr(RNAfold$FoldingPattern[x],y,y) %in% "U"){
-        
-        tempString <- substr(RNAfold$FoldingPattern[x],y,(y+6))
-        
-        if(str_count(tempString,"U") >= 5){
-          RNAfold$Utrack[x] <- "yes"
-          breakCond <- 1
-        }
-      }
-    }
-    
-    if(breakCond == 0){
-      RNAfold$Utrack[x] <- "no"
-      breakCond <- 1
-    }
-  }
-}
+RNAfold$Utrack <- ifelse(
+  sapply(RNAfold$FoldingPattern, function(s) {
+    n <- nchar(s)
+    if (n < 7) return(FALSE)
+    any(stri_count_fixed(
+      substring(s, 1:(n-6), 7:n), 
+      "U") >= 5)
+  }), 
+  "yes", "no"
+)
 RNAfold <- RNAfold %>% add_column(Case = "")
 top <- RNAfold %>% filter(strand == "+")
 comp <- RNAfold %>% filter(strand== "-")
